@@ -124,12 +124,7 @@ class UBP_404_Template {
 			return $this->siteurl;
 		}
 
-		if ( defined( 'UBP_LIVE_DOMAIN' ) && false !== UBP_LIVE_DOMAIN ) {
-			// Legacy support
-			// Strip schema, slashes, and whitespace
-			$url = str_replace( array( 'http://', 'https://' ), '', UBP_LIVE_DOMAIN );
-			$url = 'http://' . $url;
-		} elseif ( defined( 'UBP_SITEURL' ) && false !== UBP_SITEURL ) {
+		if ( defined( 'UBP_SITEURL' ) && false !== UBP_SITEURL ) {
 			$url = wp_parse_url( UBP_SITEURL );
 			$url = 'http://' . $url['host'] . $url['path'];
 		} elseif ( ! is_multisite() ) {
