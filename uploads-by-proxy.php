@@ -34,7 +34,7 @@ if ( !defined('UBP_IS_LOCAL') ) {
  */
 define( 'UBP_PLUGIN_FILE', __FILE__ );
 
-require_once dirname( __FILE__ ).'/class-ubp-helpers.php';
+require_once __DIR__ . '/class-ubp-helpers.php';
 
 // Only initialize if we're on a development server
 if ( UBP_IS_LOCAL ) {
