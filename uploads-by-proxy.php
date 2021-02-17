@@ -34,19 +34,6 @@ if ( !defined('UBP_IS_LOCAL') ) {
  */
 define( 'UBP_PLUGIN_FILE', __FILE__ );
 
-/**
- * Check for PHP 5.2 or higher before activating.
- */
-if ( version_compare(PHP_VERSION, '5.2', '<') ) {
-	if ( is_admin() && (!defined('DOING_AJAX') || !DOING_AJAX) ) {
-		require_once ABSPATH.'/wp-admin/includes/plugin.php';
-		deactivate_plugins( UBP_PLUGIN_FILE );
-		wp_die( sprintf( __( 'Uploads by Proxy requires PHP 5.2 or higher, as does WordPress 3.2 and higher. The plugin has now disabled itself. For information on upgrading, %ssee this article%s.', 'uploads-by-proxy'), '<a href="http://codex.wordpress.org/Switching_to_PHP5" target="_blank">', '</a>') );
-	} else {
-		return;
-	}
-}
-
 require_once dirname( __FILE__ ).'/class-ubp-helpers.php';
 
 // Only initialize if we're on a development server

@@ -2,8 +2,8 @@
 Contributors: pdclark
 Author URI: http://pdclark.com
 Tags: localhost, local, development, staging, uploads, media library, xampp, mamp, wamp, git, svn, subversion
-Requires at least: 3.1
-Tested up to: 4.7.4
+Requires at least: 5.2
+Tested up to: 5.6.1
 Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
