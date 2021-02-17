@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ruleset name="MorganDefault">
+	<file>.</file>
+
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<config name="testVersion" value="7.3-"/>
+
+	<arg name="extensions" value="php"/>
+
+	<arg name="cache"/>
+
+	<arg name="parallel" value="20"/>
+
+	<arg value="psv"/>
+
+	<rule ref="PHPCompatibility"/>
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Core"/>
+
+	<rule ref="WordPress.WP.DeprecatedFunctions">
+		<properties>
+			<property name="minimum_supported_version" value="5.0"/>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="uploads-by-proxy"/>
+		</properties>
+	</rule>
+</ruleset>

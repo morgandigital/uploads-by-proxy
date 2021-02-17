@@ -1,0 +1,22 @@
+{
+    "name": "morgandigital/uploads-by-proxy",
+    "description": "lol",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Toni Viemerö",
+            "email": "toni.viemero@iki.fi",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/morgandigital/uploads-by-proxy"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "wp-coding-standards/wpcs": "^2.3",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7"
+    }
+}
