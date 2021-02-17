@@ -53,7 +53,7 @@ class UBP_Get_Public_IP {
 	public function get_ip( $url, $args = array() ) {
 		$defaults = array(
 			'method'  => 'GET',
-			'referer' => $domain,
+			'referer' => $this->domain,
 			'body'    => '',
 			'index'   => 0,
 		);
