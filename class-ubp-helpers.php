@@ -7,7 +7,7 @@ class UBP_Helpers {
 	 */
 	static public function init_404_template( $template ) {
 		global $UBP_404_Template;
-		require_once dirname( __FILE__ ).'/class-404-template.php';
+		require_once dirname( __FILE__ ).'/class-ubp-404-template.php';
 		$UBP_404_Template = new UBP_404_Template();
 		return $template;
 	}

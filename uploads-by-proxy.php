@@ -47,7 +47,7 @@ if ( version_compare(PHP_VERSION, '5.2', '<') ) {
 	}
 }
 
-require_once dirname( __FILE__ ).'/class-helpers.php';
+require_once dirname( __FILE__ ).'/class-ubp-helpers.php';
 
 // Only initialize if we're on a development server
 if ( UBP_IS_LOCAL ) {

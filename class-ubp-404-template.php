@@ -22,7 +22,7 @@ class UBP_404_Template {
 	 * Stream files from publicly registered IP address through PHP
 	 */
 	public function stream() {
-		require dirname(__FILE__).'/class-get-public-ip.php';
+		require dirname(__FILE__).'/class-ubp-get-public-ip.php';
 
 		$ip = new UBP_Get_Public_IP( $this->get_domain() );
 
