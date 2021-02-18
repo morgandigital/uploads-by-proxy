@@ -1,10 +1,10 @@
 === Uploads by Proxy ===
-Contributors: pdclark
-Author URI: http://pdclark.com
+Contributors: pdclark, skithund
+Author URI: https://www.morgan.fi/
 Tags: localhost, local, development, staging, uploads, media library, xampp, mamp, wamp, git, svn, subversion
 Requires at least: 5.5
 Tested up to: 5.6.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,14 @@ The plugin only loads if the site has WP_ENVIRONMENT_TYPE as 'development' or 's
 [Font Awesome](http://fortawesome.github.com/Font-Awesome)
 
 == Changelog ==
+
+= 1.1.4 =
+
+* Fix: Code cleanup
+* Fix: Rename *Uploads-By-Proxy HTTP header as X-Uploads-By-Proxy
+* Fix: Remove Referer usage in HTTP requests due to privacy
+* Fix: Use WordPress coding standards
+* Feature: Use WordPress environment type instead of IPs
 
 = 1.1.3 =
 
