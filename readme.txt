@@ -18,7 +18,7 @@ This plugin is meant to be used by developers who work on sites in development o
 
 In most cases, you should be able to activate the plugin and go. If the plugin does not work automatically, then you need to set the address of your live WordPress install in `wp-config.php`, like this:
 
-     define('UBP_SITEURL', 'http://example-live.com/wordpress');
+define('UBP_SITEURL', 'https://www.example.com/wordpress');
 
 == Installation ==
 
