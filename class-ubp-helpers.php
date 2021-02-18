@@ -6,9 +6,8 @@ class UBP_Helpers {
 	 * Only load required files on the 404_template hook
 	 */
 	public static function init_404_template( $template ) {
-		global $ubp_404_template;
 		require_once __DIR__ . '/class-ubp-404-template.php';
-		$ubp_404_template = new UBP_404_Template();
+		new UBP_404_Template();
 		return $template;
 	}
 
