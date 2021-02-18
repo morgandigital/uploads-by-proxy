@@ -6,6 +6,7 @@
 class UBP_404_Template {
 
 	public $siteurl;
+	public $scheme;
 	public $domain;
 	public $remote_path;
 	public $local_path;
@@ -21,19 +22,12 @@ class UBP_404_Template {
 	}
 
 	/**
-	 * Stream files from publicly registered IP address through PHP
+	 * Stream files through PHP
 	 */
 	public function stream() {
-		require __DIR__ . '/class-ubp-get-public-ip.php';
+		$url = $this->get_scheme() . '://' . $this->get_auth() . $this->get_domain() . $this->get_remote_path();
 
-		$ip = new UBP_Get_Public_IP( $this->get_domain() );
-
-		// Send domain name in request headers so vhosts resolve
-		$args = array( 'headers' => array( 'Host' => $this->get_domain() ) );
-		// Route around local DNS by requesting by IP directly
-		$url = 'http://' . $this->get_auth() . $ip . $this->get_remote_path();
-
-		$this->response = wp_remote_get( $url, $args );
+		$this->response = wp_remote_get( $url );
 
 		if ( ! is_wp_error( $this->response ) && 200 === $this->response['response']['code'] ) {
 			$this->download();
@@ -126,7 +120,7 @@ class UBP_404_Template {
 
 		if ( defined( 'UBP_SITEURL' ) && false !== UBP_SITEURL ) {
 			$url = wp_parse_url( UBP_SITEURL );
-			$url = 'http://' . $url['host'] . $url['path'];
+			$url = $url['scheme'] . '://' . $url['host'] . $url['path'];
 		} elseif ( ! is_multisite() ) {
 			// Nothing set... Get original siteurl from database
 			remove_filter( 'option_siteurl', '_config_wp_siteurl' );
@@ -144,6 +138,13 @@ class UBP_404_Template {
 			$this->domain = wp_parse_url( $this->get_siteurl(), PHP_URL_HOST );
 		}
 		return $this->domain;
+	}
+
+	public function get_scheme() {
+		if ( ! isset( $this->scheme ) ) {
+			$this->scheme = wp_parse_url( $this->get_siteurl(), PHP_URL_SCHEME );
+		}
+		return $this->scheme;
 	}
 
 	public function get_auth() {
