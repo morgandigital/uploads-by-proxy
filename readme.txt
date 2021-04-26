@@ -62,6 +62,10 @@ The plugin only loads if the site has WP_ENVIRONMENT_TYPE as 'development' or 's
 
 == Changelog ==
 
+= 1.2.1 =
+
+* Remove wp-admin disabling plugin if running on multisite
+
 = 1.2.0 =
 
 * Preliminary support for multisites with <code>UBP_SITEURL</code> defined as an array of <code>'localname.example.com' => 'www.example.com'</code> pairs
