@@ -4,7 +4,7 @@ Author URI: https://www.morgan.fi/
 Tags: localhost, local, development, staging, uploads, media library, xampp, mamp, wamp, git, svn, subversion
 Requires at least: 5.5
 Tested up to: 5.6.1
-Stable tag: 1.1.4
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,11 @@ This plugin is meant to be used by developers who work on sites in development o
 
 In most cases, you should be able to activate the plugin and go. If the plugin does not work automatically, then you need to set the address of your live WordPress install in `wp-config.php`, like this:
 
-define('UBP_SITEURL', 'https://www.example.com/wordpress');
+define('UBP_SITEURL', 'https://www.example.com/');
+
+or in multisite setup like this:
+
+define('UBP_SITEURL', [ 'localdev.example.com' => 'www.example.com', 'localdev2.example.com' => 'site2.example.com' ] );
 
 == Installation ==
 
@@ -57,6 +61,10 @@ The plugin only loads if the site has WP_ENVIRONMENT_TYPE as 'development' or 's
 [Font Awesome](http://fortawesome.github.com/Font-Awesome)
 
 == Changelog ==
+
+= 1.2.0 =
+
+* Preliminary support for multisites with <code>UBP_SITEURL</code> defined as an array of <code>'localname.example.com' => 'www.example.com'</code> pairs
 
 = 1.1.4 =
 
