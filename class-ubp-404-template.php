@@ -118,7 +118,10 @@ class UBP_404_Template {
 			return $this->siteurl;
 		}
 
-		if ( defined( 'UBP_SITEURL' ) && false !== UBP_SITEURL ) {
+		if ( defined( 'UBP_SITEURL' ) && is_array( UBP_SITEURL ) && isset( $_SERVER['HTTP_HOST'] ) && isset( UBP_SITEURL[ $_SERVER['HTTP_HOST'] ] ) ) {
+			$url = wp_parse_url( 'https://' . UBP_SITEURL[ $_SERVER['HTTP_HOST'] ] . '/' );
+			$url = $url['scheme'] . '://' . $url['host'] . $url['path'];
+		} elseif ( defined( 'UBP_SITEURL' ) && false !== UBP_SITEURL ) {
 			$url = wp_parse_url( UBP_SITEURL );
 			$url = $url['scheme'] . '://' . $url['host'] . $url['path'];
 		} elseif ( ! is_multisite() ) {
