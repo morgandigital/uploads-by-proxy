@@ -27,7 +27,12 @@ class UBP_404_Template {
 	public function stream() {
 		$url = $this->get_scheme() . '://' . $this->get_auth() . $this->get_domain() . $this->get_remote_path();
 
-		$this->response = wp_remote_get( $url );
+		$this->response = wp_remote_get(
+			$url,
+			[
+				'sslverify' => WP_DEBUG ? false : true,
+			]
+		);
 
 		if ( ! is_wp_error( $this->response ) && 200 === $this->response['response']['code'] ) {
 			$this->download();
