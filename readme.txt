@@ -4,7 +4,7 @@ Author URI: https://www.morgan.fi/
 Tags: localhost, local, development, staging, uploads, media library, xampp, mamp, wamp, git, svn, subversion
 Requires at least: 5.5
 Tested up to: 5.6.1
-Stable tag: 1.2.0
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ The plugin only loads if the site has WP_ENVIRONMENT_TYPE as 'development' or 's
 [Font Awesome](http://fortawesome.github.com/Font-Awesome)
 
 == Changelog ==
+
+= 1.2.2 =
+
+* Don't verify SSL on requests when using WP_DEBUG
 
 = 1.2.1 =
 
