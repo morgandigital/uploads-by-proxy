@@ -4,7 +4,7 @@
  * Handle redirection through WordPress 404 Template
  */
 class UBP_404_Template {
-
+  public $auth = null;
 	public $siteurl;
 	public $scheme;
 	public $domain;
@@ -156,7 +156,7 @@ class UBP_404_Template {
 	}
 
 	public function get_auth() {
-		if ( ! isset( $this->auth ) ) {
+		if ( is_null( $this->auth ) ) {
 			$user = wp_parse_url( $this->get_siteurl(), PHP_URL_USER );
 			$pass = wp_parse_url( $this->get_siteurl(), PHP_URL_PASS );
 
