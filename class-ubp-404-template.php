@@ -183,7 +183,7 @@ class UBP_404_Template {
 			$requested_path = substr( $requested_path, strlen( $local_wordpress_path ) - 1, strlen( $requested_path ) );
 		}
 
-		$this->local_path = $requested_path;
+		$this->local_path = rawurldecode( $requested_path );
 
 		return $this->local_path;
 	}
