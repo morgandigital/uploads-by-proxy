@@ -3,8 +3,9 @@ Contributors: pdclark, skithund
 Author URI: https://www.morgan.fi/
 Tags: localhost, local, development, staging, uploads, media library, xampp, mamp, wamp, git, svn, subversion
 Requires at least: 5.5
-Tested up to: 5.6.1
-Stable tag: 1.2.2
+Tested up to: 7.1
+Requires PHP: 8.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,9 +21,28 @@ In most cases, you should be able to activate the plugin and go. If the plugin d
 
 define('UBP_SITEURL', 'https://www.example.com/');
 
-or in multisite setup like this:
+= Multisite =
+
+Domain based multisites map each local domain to its production domain. Values without a scheme use https:
 
 define('UBP_SITEURL', [ 'localdev.example.com' => 'www.example.com', 'localdev2.example.com' => 'site2.example.com' ] );
+
+Subdirectory multisites only need the production address of the network, subsite paths like `/site2/` are kept:
+
+define('UBP_SITEURL', 'https://www.example.com');
+
+Both forms accept a port and a path, eg. `http://localhost:8080/network`.
+
+= Web server =
+
+Missing files must be routed to WordPress so it can serve a 404. Single sites work out of the box. The default multisite rules for Apache serve missing `wp-content` files directly, so add this before the `wp-(content|admin|includes)` rule in `.htaccess`:
+
+RewriteCond %{DOCUMENT_ROOT}/$2 !-f
+RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-content/uploads/.*) index.php [L]
+
+= Image sizes =
+
+When a resized image like `photo-300x200.jpg` is missing, the original `photo.jpg` (and `photo-scaled.jpg` for big images) is downloaded too, so new image sizes can be generated locally with eg. `wp media regenerate`. Disable with `add_filter( 'ubp_fetch_originals', '__return_false' );`
 
 == Installation ==
 
@@ -61,6 +81,19 @@ The plugin only loads if the site has WP_ENVIRONMENT_TYPE as 'development' or 's
 [Font Awesome](http://fortawesome.github.com/Font-Awesome)
 
 == Changelog ==
+
+= 2.0.0 =
+
+* Security: Fix unauthenticated arbitrary file write. Encoded `../` in request paths allowed writing any file, including PHP, `.htaccess` and `wp-config.php`, outside the uploads directory
+* Security: Only proxy file types that can be uploaded to the site
+* Security: Don't forward production response headers or leak server paths in headers
+* Feature: Subdirectory multisite support
+* Feature: Download original images when a resized image is missing
+* Feature: Ports in `UBP_SITEURL`
+* Fix: Don't request the site itself when no production address is configured
+* Fix: Stream large files to disk instead of memory
+* Removed: `ubp_allowed_paths` filter, only the uploads directory is proxied
+* Requires PHP 8.1
 
 = 1.2.2 =
 
