@@ -1,19 +1,25 @@
 <?php
+/**
+ * Admin notices for missing requirements.
+ *
+ * @package Uploads_By_Proxy
+ */
 
-class UBP_Helpers {
+namespace Morgan\Uploads_By_Proxy;
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Warns when the plugin can't work.
+ */
+final class Admin_Notices {
 
 	/**
-	 * Only load required files on the 404_template hook
+	 * Hook the requirement checks.
 	 */
-	public static function init_404_template( $template ) {
-		require_once __DIR__ . '/class-ubp-404-template.php';
-		new UBP_404_Template();
-		return $template;
-	}
-
-	public static function requirements_check() {
-		add_action( 'admin_notices', 'UBP_Helpers::request_uploads_writable' );
-		add_action( 'admin_footer', 'UBP_Helpers::request_permalinks_enabled' );
+	public static function requirements_check(): void {
+		add_action( 'admin_notices', array( self::class, 'request_uploads_writable' ) );
+		add_action( 'admin_footer', array( self::class, 'request_permalinks_enabled' ) );
 	}
 
 	/**
@@ -51,7 +57,7 @@ class UBP_Helpers {
 	 */
 	public static function request_uploads_writable() {
 		$upload_dir = wp_upload_dir();
-		if ( is_writable( $upload_dir['basedir'] ) ) {
+		if ( is_writable( $upload_dir['basedir'] ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
 			return true;
 		}
 		?>
